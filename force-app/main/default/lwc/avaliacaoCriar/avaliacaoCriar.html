@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Nova Avaliação" icon-name="standar:record">
+        <div class="slds-p-around_small">
+            <lightning-combobox label="Contas" value={selectedAccountId} placeholder="Selecione a conta"
+                options={accountOptions} onchange={contactChangeVal}>
+
+            </lightning-combobox>
+            <lightning-input name="titulo" type="text" label="titulo" onchange={contactChangeVal}></lightning-input>
+
+            <lightning-input name="nota" type="number" label="Nota" onchange={contactChangeVal}></lightning-input>
+            <lightning-input name="descricao" type="text" label="descrição"
+                onchange={contactChangeVal}></lightning-input>
+            <lightning-button onclick={handleClick} label="Registrar Avaliação"
+                onchange={contactChangeVal}></lightning-button>
+
+        </div>
+
+    </lightning-card>
+</template>

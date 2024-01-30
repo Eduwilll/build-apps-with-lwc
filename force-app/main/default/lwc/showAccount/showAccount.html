@@ -1,0 +1,37 @@
+<template>
+    <lightning-card title="Accounts" icon-name="utility:person_account" class="slds-size_full slds-max-small-size_1-of-1 slds-max-medium-size_1-of-1 slds-max-large-size_2-of-4">
+		<div class="slds-card__body slds-card__body_inner">
+			<!-- Start List list -->
+			<template if:true={Accts}>
+				<lightning-layout multiple-rows="true" pull-to-boundary="small">
+					<template for:each={Accts} for:item="acc">
+                        <lightning-layout-item key={Accts.Id} size="6" small-size="6" medium-size="4" large-size="3" class="slds-var-p-around_x-small">
+							<!-- Start Account tile -->
+							<lightning-card title={acc.Name} class="acc-tile">
+								<div class="slds-var-p-horizontal_small bear-tile-body">
+									<div class="slds-media">
+										
+										<div class="slds-media__body">
+											<p class="slds-var-m-bottom_xx-small">Account ID:{acc.Id}</p>
+											<p class="slds-var-m-bottom_xx-small">Account Name:{acc.Name}</p>
+										</div>
+									</div>
+								</div>
+							</lightning-card>
+							<!-- End Account tile -->
+						</lightning-layout-item>
+					</template>
+				</lightning-layout>
+                <lightning-button variant="brand" label="Nova Conta" title="Primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+			</template>
+			<!-- End bear List -->
+            
+			<!-- Data failed to load -->
+			<template if:true={error}>
+				<div class="slds-text-color_error">
+					An error occurred while loading the Accounts list
+				</div>
+			</template>
+		</div>
+	</lightning-card>
+</template>

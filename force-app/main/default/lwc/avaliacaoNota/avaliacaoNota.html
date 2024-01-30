@@ -1,0 +1,31 @@
+<template>
+    <lightning-card title="Nova Avaliação" icon-name="standard:apps"
+    >
+        <div class="slds-p-around_small">
+            <div class="slds-m-around_medium">
+                <h1 style="color: red;">10</h1>
+                <p>User Id:</p>
+                {userId}
+                <p>userName</p>
+                {userName}
+                <p>PageRedorcId</p>
+                {recordId}
+            </div>
+            <lightning-output-field></lightning-output-field>
+            <lightning-input name="titulo" type="text" label="titulo" onchange={contactChangeVal}></lightning-input>
+            <lightning-combobox name="nota" label="Nota" value={value} placeholder="Selecione a Nota" options={options}
+                onchange={contactChangeVal}></lightning-combobox>
+            <lightning-textarea name="descricao" type="text" label="descrição"
+                onchange={contactChangeVal}></lightning-textarea>
+            <div class="row">
+                <lightning-button onclick={handleClick} label="Registrar Avaliação"
+                    onchange={contactChangeVal}></lightning-button>
+
+            </div>
+
+        </div>
+
+    </lightning-card>
+    <c-avaliacao-lista></c-avaliacao-lista>
+    
+</template>

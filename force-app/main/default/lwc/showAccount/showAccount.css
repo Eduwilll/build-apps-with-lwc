@@ -1,0 +1,10 @@
+:host {
+	--sds-c-card-color-background: linear-gradient(180deg, rgba(255,255,255,1) 75%, #609de2 100%);
+}
+.acc-tile {
+    display: block;
+    border: 1px solid #267beb;
+    border-radius: .25rem;
+    background-color: #609de2;
+    height: auto; /* or height: 100%; */
+}

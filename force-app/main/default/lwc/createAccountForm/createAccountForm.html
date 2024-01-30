@@ -1,0 +1,74 @@
+<template>
+    <lightning-card>
+        <div slot="title">
+            <h3>
+                <lightning-icon icon-name="standard:contact" size="small"></lightning-icon> Formulário de Contato em LWC
+            </h3>
+        </div>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+                <lightning-combobox
+                    name="value"
+                    label="Tipo de Contato"
+                    value={value}
+                    placeholder="Select Progress"
+                    options={options}
+                    onchange={handleChange}>
+                </lightning-combobox>
+                <p>Selected value is: {value}</p>
+            </div>
+            <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+                <div class="slds-form-element">
+                    <lightning-input type="text" label="Nome" name="firstName" value={firstName} onchange={contactChangeVal}></lightning-input>
+                </div>
+            </div>
+            <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+                <div class="slds-form-element">
+                    <lightning-input type="text" label="Sobrenome" name="lastName" value={lastName} onchange={contactChangeVal}></lightning-input>
+                </div>
+            </div>
+            <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+                <div class="slds-form-element">
+                    <lightning-input type="date" name="bday" label="Data de Nascimento" value={bday} onchange={contactChangeVal}></lightning-input>
+                </div>
+            </div>
+            <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+                <div class="slds-form-element">
+                    <lightning-input type="email" label="Email" name="emailId" value={emailId} onchange={contactChangeVal}></lightning-input>
+                </div>
+            </div>
+            <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+                <div class="slds-form-element">
+                    <lightning-input type="text" label="Departamento" name="departmentVal" value={departmentVal} onchange={contactChangeVal}></lightning-input>
+                </div>
+            </div>
+           
+             <!-- Render templates -->
+            <template if:true={isSelectedJuridico}>
+                <!-- Render template para Juridico -->
+                <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+                    <div class="slds-form-element">
+                        <lightning-input type="text" label="CNPJ" name="juridico" value={juridico} onchange={contactChangeVal}></lightning-input>
+                    </div>
+                </div>
+                <p>Selected: Juridico</p>
+            </template>
+            <template if:true={isSelectedFisico}>
+                <!-- Render template para Fisico -->
+                <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+                    <div class="slds-form-element">
+                        <lightning-input type="text" label="CPF" name="fisico" value={fisico} onchange={contactChangeVal}></lightning-input>
+                    </div>
+                </div>
+                <p>Selected: Fisico</p>
+            </template>
+            
+            <div class="slds-p-horizontal--small slds-col slds-size_6-of-12 slds-m-bottom--medium">
+                <div class="slds-form-element slds-p-top_large ">
+                    <lightning-button icon-name="utility:adduser" label="Criar Contato" variant="brand" onclick={insertContactAction}></lightning-button>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>
+

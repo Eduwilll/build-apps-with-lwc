@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Tabela de Notas" icon-name="custom:custom11">
+        <div class="slds-m-around_medium">
+          <template if:true={getRecordsData}>
+            <lightning-datatable
+              key-field="id"
+              data={dataListAva}
+              columns={columns}
+              onrowaction={handleRowAction}
+              hide-checkbox-column="true"
+              onsort={handleSortData}
+              sorted-by={sortBy}
+              sorted-direction={sortDirection}
+            ></lightning-datatable>
+          </template>
+          <template if:false={getRecordsData}>
+            <p>No data found.</p>
+          </template>
+        </div>
+      </lightning-card>
+</template>

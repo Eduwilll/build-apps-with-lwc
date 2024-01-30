@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Calculadora">
+        <div class="slds-var-m-horizontal_small">
+        </div>
+
+        <div class="slds-var-m-horizontal_small">
+            <lightning-input label="Número 1" type="number" value={num1} onchange={handleNum1Change}></lightning-input>
+            <lightning-input label="Número 2" type="number" value={num2} onchange={handleNum2Change}></lightning-input>
+        </div>
+        <div class="slds-var-m-horizontal_small">
+            <lightning-button label="+" onclick={handleAdd}></lightning-button>
+            <lightning-button label="-" onclick={handleSubtract}></lightning-button>
+            <lightning-button label="*" onclick={handleMultiply}></lightning-button>
+            <lightning-button label="/" onclick={handleDivide}></lightning-button>
+        </div>
+        <div class="slds-var-m-horizontal_small">
+            Resultado: {result}
+        </div>
+    </lightning-card>
+</template>

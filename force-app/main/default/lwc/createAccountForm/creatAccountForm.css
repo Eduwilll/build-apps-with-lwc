@@ -1,0 +1,48 @@
+.slds-p-horizontal--small {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.slds-m-bottom--medium {
+    margin-bottom: 1.5rem;
+}
+
+.slds-size_6-of-12 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+:host {
+    display: block;
+    padding: 1rem;
+}
+
+.lightning-card {
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+
+.slds-form-element {
+    margin-bottom: 1.5rem;
+}
+
+.slds-col {
+    box-sizing: border-box;
+}
+
+lightning-input {
+    width: 100%;
+}
+
+lightning-button {
+    margin-top: 1rem;
+}
+
+[slds-p-top_large] {
+    margin-top: 2rem;
+}
+
+.selected-message {
+    font-weight: bold;
+    color: #4caf50; 
+}

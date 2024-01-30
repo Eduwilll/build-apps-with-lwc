@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title={capitalizedGreeting} icon-name="custom:custom14">
+        <div class="slds-var-m-around_medium">
+            <p>Hoje {currentDate}</p>
+            <lightning-input 
+                label="Name" 
+                value={name} 
+                onchange={handleGreetingChange}
+            ></lightning-input>
+            
+            <lightning-input 
+                label="Family Name" 
+                value={nameFamily} 
+                onchange={handleGreetingChange2}
+            ></lightning-input>
+            <div>
+                <lightning-button 
+                    label="Entrar" 
+                    onclick={handleShowAlert}
+                ></lightning-button>
+            </div>
+            <p class="mensagem"></p>
+        </div>
+    </lightning-card>
+</template>
