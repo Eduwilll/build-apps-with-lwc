@@ -2,7 +2,7 @@ import { LightningElement, api } from 'lwc';
 import getUserDetails from '@salesforce/apex/avaliacaoController.getUserDetails';
 import criarAvaliacao from '@salesforce/apex/avaliacaoController.criarAvaliacao';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import Id from '@salesforce/user/Id'; //this scoped module imports the current user ID 
+import Id from '@salesforce/user/Id'; 
 
 
 export default class AvaliacaoNota extends LightningElement {
@@ -30,7 +30,6 @@ export default class AvaliacaoNota extends LightningElement {
     connectedCallback() {
         this.retrieveUserDetails();
         console.log('Record ID:', this.recordId);
-
 
     }
 
@@ -66,11 +65,18 @@ export default class AvaliacaoNota extends LightningElement {
                 nota: this.nota,
                 accountId: this.recordId
             });
+
+            if (result) {
+                const childComponent = this.template.querySelector('c-avaliacao-lista');
+                if (childComponent) {
+                    childComponent.refreshTable();
+                }
+            }
             // Limpar os campos após o sucesso
             this.titulo = '';
             this.descricao = '';
             this.nota = 0;
-
+    
             // Exibir uma mensagem de sucesso
             this.dispatchEvent(
                 new ShowToastEvent({
@@ -94,7 +100,9 @@ export default class AvaliacaoNota extends LightningElement {
                     variant: 'error'
                 })
             );
+            
         }
+        
     }
     
 }

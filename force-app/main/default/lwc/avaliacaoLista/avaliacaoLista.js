@@ -19,6 +19,12 @@ export default class AvaliacaoLista extends LightningElement {
       console.log('RECORD ID FROM LIST:', this.recordId);
       this.retrieveRecordsAvaliacao();
     }
+
+    @api
+    refreshTable(){
+      this.connectedCallback();
+    }
+
     retrieveRecordsAvaliacao() {
       getRecords({ recordId: this.recordId })
           .then(result => {
