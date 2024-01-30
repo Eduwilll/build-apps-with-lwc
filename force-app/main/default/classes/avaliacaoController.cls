@@ -1,4 +1,11 @@
 public with sharing class avaliacaoController {
+
+    public static AvaliacaoBuilder builder;
+
+    static{
+        builder = new AvaliacaoBuilder();
+    }
+
     @AuraEnabled(cacheable=true scope='global')
     public static List<AccountOption> avaliacaoController() {
         List<AccountOption> options = new List<AccountOption>();
@@ -48,22 +55,12 @@ public with sharing class avaliacaoController {
        }
    }
 
-    @AuraEnabled
-    public static List<avaliacaoVO> getRecords() {
-        List<Avaliacao__c> listaAvaciacaoDAO= AvaliacaoDAO.getAll();
-        System.debug('listaAvaciacaoDAO:'+listaAvaciacaoDAO);
-
-        List<avaliacaoVO> listaAvalicaoVO = new List<avaliacaoVO>();
-
-
-        for (Avaliacao__c a : listaAvaciacaoDAO) {
-            avaliacaoVO listAva = new avaliacaoVO(a);
-            listaAvalicaoVO.add(listAva);
-        }
-        System.debug('listaAvalicaoVO:'+listaAvalicaoVO);
-
-        return listaAvalicaoVO;
-
-    }
+   @AuraEnabled
+   public static List<avaliacaoVO> getRecords(Id recordId) {
+       List<Avaliacao__c> avaliacoes = AvaliacaoDAO.getByAccountId(recordId);
+   
+       return builder.buildAvaliacaoVO(avaliacoes);
+   }
+   
    
 }
