@@ -16,18 +16,16 @@ export default class AvaliacaoLista extends LightningElement {
     sortDirection = 'desc';
 
     connectedCallback(){
-      this.retrieveRecordsAvaliacao();
       console.log('RECORD ID FROM LIST:', this.recordId);
-
+      this.retrieveRecordsAvaliacao();
     }
-    retrieveRecordsAvaliacao(){
-      getRecords ({recordId: this.recordId})
-      .then(result => {
-        this.dataListAva = result;
-      })
-      
-
-    } 
+    retrieveRecordsAvaliacao() {
+      getRecords({ recordId: this.recordId })
+          .then(result => {
+              this.dataListAva = result;
+          })
+  }
+  
     handleSortData(event) {
       this.sortBy = event.detail.fieldName;
       this.sortDirection = event.detail.sortDirection;
