@@ -13,7 +13,7 @@
                                     name="titulo" 
                                     type="text" 
                                     label="titulo" 
-                                    onchange={contactChangeVal}
+                                    onchange={recordChangeVal}
                                     >
                     </lightning-input>
                     <lightning-combobox 
@@ -22,21 +22,21 @@
                                         value={value} 
                                         placeholder="Selecione a Nota"
                                         options={options} 
-                                        onchange={contactChangeVal}>
+                                        onchange={recordChangeVal}>
                     </lightning-combobox>
 
                     <lightning-textarea 
                                         name="descricao" 
                                         type="text" 
                                         label="descrição" 
-                                        onchange={contactChangeVal}>
+                                        onchange={recordChangeVal}>
                     </lightning-textarea>
                 </lightning-layout-item>
                 <lightning-layout-item padding="around-small" size="12">
                     <lightning-button 
                                     onclick={handleClick} 
                                     label="Registrar Avaliação" 
-                                    onchange={contactChangeVal}>
+                                    onchange={recordChangeVal}>
                     </lightning-button>
                 </lightning-layout-item>
 

@@ -48,7 +48,7 @@ export default class AvaliacaoNota extends LightningElement {
     }
     
     // get value
-    contactChangeVal(event) {
+    recordChangeVal(event) {
         console.log(event.target.name);
         console.log(event.target.value);
         const field = event.target.name;
