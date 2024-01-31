@@ -36,29 +36,28 @@ public with sharing class avaliacaoController {
 
     }
 
-   // Método para criar avaliação
-   @AuraEnabled
-   public static Id criarAvaliacao(String titulo, String descricao, Double nota, Id accountId) {
-       Avaliacao__c novaAvaliacao = new Avaliacao__c(
-           Name = titulo,
-           Descricao__c = descricao,
-           Nota__c = nota,
-           Account__c = accountId
-       );
-   
-       try {
-           insert novaAvaliacao;
-           return novaAvaliacao.Id;
-       } catch (Exception e) {
-           // Lógica de tratamento de exceção
-           throw new AuraHandledException('Erro ao criar a avaliação: ' + e.getMessage());
-       }
-   }
+    @AuraEnabled
+    public static Id criarAvaliacao(String titulo, String descricao, Decimal nota, Id accountId) {
+        Avaliacao__c novaAvaliacao = new Avaliacao__c(
+            Name = titulo,
+            Descricao__c = descricao,
+            Nota__c = nota,
+            Account__c = accountId
+        );
+    
+        try {
+            insert novaAvaliacao;
+            return novaAvaliacao.Id;
+        } catch (DmlException e) {
+            // Lógica de tratamento de exceção
+            throw new AuraHandledException('Erro ao criar a avaliação: ' + e.getMessage());
+        }
+    }
 
    @AuraEnabled
    public static List<avaliacaoVO> getRecords(Id recordId) {
        List<Avaliacao__c> avaliacoes = AvaliacaoDAO.getByAccountId(recordId);
-   
+
        return builder.buildAvaliacaoVO(avaliacoes);
    }
    
