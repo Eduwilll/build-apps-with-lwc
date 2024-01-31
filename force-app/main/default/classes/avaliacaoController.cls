@@ -6,27 +6,27 @@ public with sharing class avaliacaoController {
         builder = new AvaliacaoBuilder();
     }
 
-    @AuraEnabled(cacheable=true scope='global')
-    public static List<AccountOption> avaliacaoController() {
-        List<AccountOption> options = new List<AccountOption>();
-        for (Account acc : [SELECT Id, Name FROM Account]) {
-            options.add(new AccountOption(acc.Id, acc.Name));
-        }
+    // @AuraEnabled(cacheable=true scope='global')
+    // public static List<AccountOption> avaliacaoController() {
+    //     List<AccountOption> options = new List<AccountOption>();
+    //     for (Account acc : [SELECT Id, Name FROM Account]) {
+    //         options.add(new AccountOption(acc.Id, acc.Name));
+    //     }
 
-        return options;
+    //     return options;
         
-    }
-    public class AccountOption {
-        @AuraEnabled
-        public String accountId { get; set; }
-        @AuraEnabled
-        public String accountName { get; set; }
+    // }
+    // public class AccountOption {
+    //     @AuraEnabled
+    //     public String accountId { get; set; }
+    //     @AuraEnabled
+    //     public String accountName { get; set; }
 
-        public AccountOption(String id, String name) {
-            accountId = id;
-            accountName = name;
-        }
-    }
+    //     public AccountOption(String id, String name) {
+    //         accountId = id;
+    //         accountName = name;
+    //     }
+    // }
 
     /******************************************************************/
 
