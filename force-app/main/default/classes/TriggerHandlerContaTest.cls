@@ -25,14 +25,16 @@ private class TriggerHandlerContaTest {
     @isTest static void testHandleAvaliacaoTrigger() {
         // criar account
         Account acc1 = TestDataFactory.criarContaDeTeste('Teste Account');
-
+        
 
         // Create 3 avaliacoes for acc1 and 2 avaliacoes for acc2
         Avaliacao__c av1 = new Avaliacao__c(Account__c = acc1.Id, Nota__c = 5);
         Avaliacao__c av2 = new Avaliacao__c(Account__c = acc1.Id, Nota__c = 3);
+        Avaliacao__c av3 = new Avaliacao__c(Account__c = acc1.Id, Nota__c = 5);
+        Avaliacao__c av4 = new Avaliacao__c(Account__c = acc1.Id, Nota__c = 3);
       
         // Trigger the handleAvaliacaoTrigger method
-        TriggerHandlerConta.handleAvaliacaoTrigger(new List<Avaliacao__c>{av1,av2}, new Map<Id, Avaliacao__c>());
+        TriggerHandlerConta.handleAvaliacaoTrigger(new List<Avaliacao__c>{av1,av2,av3,av4}, new Map<Id, Avaliacao__c>());
 
         // Verify the account records were updated correctly
         Account acc1Updated = [SELECT Nota_da_Conta__c FROM Account WHERE Id = :acc1.Id];

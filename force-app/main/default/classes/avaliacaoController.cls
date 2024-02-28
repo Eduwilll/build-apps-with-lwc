@@ -31,9 +31,8 @@ public with sharing class avaliacaoController {
     /******************************************************************/
 
     @AuraEnabled
-    public static User getUserDetails(String userId) {
-        return [SELECT Name, UserRole.Name, Profile.Name, Manager.Name FROM User WHERE Id = :userId LIMIT 1];
-
+    public static String getUserDetails() {
+        return UserInfo.getName();
     }
 
     @AuraEnabled

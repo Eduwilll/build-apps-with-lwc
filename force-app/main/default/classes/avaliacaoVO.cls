@@ -1,3 +1,10 @@
+/**
+ * @description       : 
+ * @author            : Eduardo Fabricio
+ * @group             : 
+ * @last modified on  : 02-07-2024
+ * @last modified by  : Eduardo Fabricio
+**/
 public with sharing class avaliacaoVO {
 
     public avaliacaoVO(Avaliacao__c avaliacao){
@@ -13,5 +20,6 @@ public with sharing class avaliacaoVO {
     @AuraEnabled public Double nota {get; set;}
     @AuraEnabled public Id accountId {get; set;}
     @AuraEnabled public String userName {get; set;}
+    
 
 }

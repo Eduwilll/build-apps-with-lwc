@@ -1,11 +1,7 @@
 import { LightningElement, wire, api } from 'lwc';
 import getAccounts from '@salesforce/apex/avaliacaoController.avaliacaoController';
 import createAvaliacao from '@salesforce/apex/avaliacaoController.createAvaliacao';
-import Avaliacao from '@salesforce/schema/Avaliacao__c'
-import selectedAccountId from '@salesforce/schema/Avaliacao__c.Account__c'
-import titulo from '@salesforce/schema/Avaliacao__c.Name'
-import descricao from '@salesforce/schema/Avaliacao__c.Descricao__c'
-import nota from '@salesforce/schema/Avaliacao__c.Nota__c'
+
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class AvaliacaoCriar extends LightningElement {

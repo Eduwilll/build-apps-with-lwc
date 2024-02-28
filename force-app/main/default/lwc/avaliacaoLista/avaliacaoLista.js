@@ -15,6 +15,7 @@ export default class AvaliacaoLista extends LightningElement {
     sortBy = 'CreatedDate';
     sortDirection = 'desc';
 
+ 
     connectedCallback(){
       console.log('RECORD ID FROM LIST:', this.recordId);
       this.retrieveRecordsAvaliacao();

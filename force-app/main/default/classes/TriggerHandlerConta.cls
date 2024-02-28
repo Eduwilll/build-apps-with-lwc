@@ -1,3 +1,12 @@
+/**
+ * @description       : 
+ * @author            : Eduardo Fabricio
+ * @group             : 
+ * @company           : Sottelli
+ * @systemLayer       : 
+ * @last modified on  : 28-02-2024
+ * @last modified by  : Eduardo Fabricio
+**/
 public with sharing class TriggerHandlerConta {
   
     public static void handleAvaliacaoTrigger(List<Avaliacao__c> newAvaliacoes, Map<Id, Avaliacao__c> oldAvaliacoesMap) {

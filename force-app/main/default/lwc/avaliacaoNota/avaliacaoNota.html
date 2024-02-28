@@ -9,18 +9,22 @@
                     <lightning-formatted-text class="slds-form-element__label slds-col" value={userName}></lightning-formatted-text>
                 </lightning-layout-item>
                 <lightning-layout-item padding="around-small" size="12">
+                <form action="">
+
                     <lightning-input 
                                     name="titulo" 
                                     type="text" 
-                                    label="titulo" 
+                                    label="Título da Avaliação"
+                                    value={titleValue}
                                     onchange={recordChangeVal}
                                     >
                     </lightning-input>
                     <lightning-combobox 
                                         name="nota" 
-                                        label="Nota" 
-                                        value={value} 
+                                        label="Nota" required
+                                        value={notaValue} 
                                         placeholder="Selecione a Nota"
+                                        data-element="required"
                                         options={options} 
                                         onchange={recordChangeVal}>
                     </lightning-combobox>
@@ -28,9 +32,12 @@
                     <lightning-textarea 
                                         name="descricao" 
                                         type="text" 
+                                        value={descricaoValue}
                                         label="descrição" 
                                         onchange={recordChangeVal}>
                     </lightning-textarea>
+                </form>
+
                 </lightning-layout-item>
                 <lightning-layout-item padding="around-small" size="12">
                     <lightning-button 

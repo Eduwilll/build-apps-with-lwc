@@ -1,6 +1,19 @@
+/**
+ * @description       : 
+ * @author            : Eduardo Fabricio
+ * @group             : 
+ * @last modified on  : 02-07-2024
+ * @last modified by  : Eduardo Fabricio
+**/
 @isTest
 public class AvaliacaoControllerTest {
 
+    @TestSetup
+    static void makeData(){
+        User usuarioTeste = TestDataFactory.criarUsuarioDeTeste('Jonas');
+        System.debug(usuarioTeste);
+        insert usuarioTeste;
+    }
     @isTest
     public static void testCriarAvaliacao() {
         Account contaTeste = TestDataFactory.criarContaDeTeste('Conta de Teste');
@@ -50,16 +63,17 @@ public class AvaliacaoControllerTest {
         System.assertEquals('Título Teste', resultados[0].titulo, 'O título da avaliação não está correto');
     }
 
-    // @isTest
-    // public static void testGetUserDetails() {
-    //     // Criar um usuário de teste
-    //     User usuarioTeste = TestDataFactory.criarUsuarioDeTeste('Nome Teste', 'Perfil de Teste');
-
-    //     // Chamar o método getUserDetails usando a TestDataFactory
-    //     User detalhesUsuario = AvaliacaoController.getUserDetails(usuarioTeste.Id);
-
-    //     // Verificar se os detalhes do usuário são retornados corretamente
-    //     System.assertEquals('Nome Teste', detalhesUsuario.Name, 'O nome do usuário não está correto');
-    //     System.assertEquals('Perfil de Teste', detalhesUsuario.Profile.Name, 'O perfil do usuário não está correto');
-    // }
+    @isTest
+    public static void testGetUserDetails() {
+        // Criar um usuário de teste
+        User userQuery = [SELECT Name FROM User WHERE LastName = 'Jonas' LIMIT 1];
+        // Chamar o método getUserDetails usando a TestDataFactory
+        String detalhesUsuario = ''; 
+        System.runAs(userQuery ){
+            detalhesUsuario = AvaliacaoController.getUserDetails();
+        }
+        System.debug(detalhesUsuario);
+        // Verificar se os detalhes do usuário são retornados corretamente
+        System.assertEquals(userQuery.Name, detalhesUsuario, 'o usuário name é diferente');
+    }
 }
