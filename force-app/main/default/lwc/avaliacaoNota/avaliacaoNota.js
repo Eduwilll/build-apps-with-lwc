@@ -11,10 +11,12 @@ export default class AvaliacaoNota extends LightningElement {
   @api recordId;
   titulo;
   titleValue;
-  nota ;
+  nota;
   notaValue;
   descricao;
   descricaoValue;
+  isButtonDisabled = false;
+
   get options() {
     return [
       { label: "1", value: "1" },
@@ -33,10 +35,7 @@ export default class AvaliacaoNota extends LightningElement {
   retrieveUserDetails() {
     getUserDetails({ userId: this.userId })
       .then((result) => {
-        this.userName = result.Name;
-        this.userRoleName = result.UserRole ? result.UserRole.Name : null;
-        this.userProfileName = result.Profile ? result.Profile.Name : null;
-        this.userManagerName = result.Manager ? result.Manager.Name : null;
+        this.userName = result;
       })
       .catch((error) => {
         console.error("Error fetching user details:", error);
@@ -56,24 +55,30 @@ export default class AvaliacaoNota extends LightningElement {
   handleReset() {
     // Limpar os campos após o sucesso
     //this.template.querySelector('form').reset();
-    this.template.querySelectorAll('lightning-combobox,lightning-input,lightning-textarea').forEach(each => {
-      each.value = undefined;
-  });
+    this.template
+      .querySelectorAll("lightning-combobox,lightning-input,lightning-textarea")
+      .forEach((each) => {
+        each.value = undefined;
+      });
     this.titulo = null;
     this.descricao = null;
     this.nota = null;
   }
   async handleClick() {
-    try {
-      if (this.nota === null || this.nota === undefined) {
-        this.dispatchEvent(
-          new ShowToastEvent({
-            title: "Sucesso",
-            message: "Por favor, insira um valor para a nota.",
-            variant: "error",
-          })
-        );
-         // Checa se os campos com required estão preenchidos e enviar uma mensagem custom.
+    if (
+      this.nota === null ||
+      this.nota === undefined ||
+      this.titulo === null ||
+      this.titulo === undefined
+    ) {
+      this.dispatchEvent(
+        new ShowToastEvent({
+          title: "Sucesso",
+          message: "Por favor, insira um valor para a nota.",
+          variant: "error",
+        })
+      );
+      // Checa se os campos com required estão preenchidos e enviar uma mensagem custom.
       let fieldErrorMsg = "Por favor insira o";
       this.template
         .querySelectorAll('[data-element="required"]')
@@ -88,48 +93,60 @@ export default class AvaliacaoNota extends LightningElement {
           }
           item.reportValidity();
         });
-        return;
+      return;
     }
+    try {
+      this.isButtonDisabled = true;
       const result = await criarAvaliacao({
         titulo: this.titulo,
         descricao: this.descricao,
         nota: this.nota,
         accountId: this.recordId,
-      });
-
-      // You can use 'result' here or perform any other actions after the promise resolves.
-      if (result) {
-        const childComponent = this.template.querySelector("c-avaliacao-lista");
-        if (childComponent) {
-          childComponent.refreshTable();
-        }
-      }
-
-      this.handleReset();
-
-      // Exibir uma mensagem de sucesso
-      this.dispatchEvent(
-        new ShowToastEvent({
-          title: "Sucesso",
-          message: "Avaliação criada com sucesso!",
-          variant: "success",
+      })
+        .then((result) => {
+          if (result) {
+            const childComponent = this.template.querySelector("c-avaliacao-lista");
+            if (childComponent) {
+              childComponent.refreshTable();
+            }
+          }
+          // Exibir uma mensagem de sucesso
+          this.dispatchEvent(
+            new ShowToastEvent({
+              title: "Sucesso",
+              message: "Avaliação criada com sucesso!",
+              variant: "success",
+            })
+          );
         })
-      );
+        .catch((error) => {
+          this.showToastMethods("UPS!", error.body.message, "Error");
+        })
+        .finally(() => {
+          this.handleReset();
+          this.isButtonDisabled = false;
+        });
+      // You can use 'result' here or perform any other actions after the promise resolves.
+      
     } catch (error) {
       console.error(error);
 
       // Extrair a mensagem de erro da exceção
-       // Check for a specific error code
-       if (error.body && error.body.message && error.body.message.includes('CANNOT_INSERT_UPDATE_ACTIVATE_ENTITY')) {
+      // Check for a specific error code
+      if (
+        error.body &&
+        error.body.message &&
+        error.body.message.includes("CANNOT_INSERT_UPDATE_ACTIVATE_ENTITY")
+      ) {
         // Handle the specific error related to the trigger
         errorMessage = "A custom error message for the trigger-related issue.";
-    } else {
+      } else {
         // Handle other errors
         errorMessage = "Ocorreu um erro ao criar a avaliação.";
         if (error.body && error.body.message) {
-            errorMessage += " " + error.body.message;
+          errorMessage += " " + error.body.message;
         }
-    }
+      }
 
       // Exibir uma mensagem de erro
       this.dispatchEvent(

@@ -14,15 +14,15 @@
                     <lightning-input 
                                     name="titulo" 
                                     type="text" 
-                                    label="Título da Avaliação"
-                                    value={titleValue}
+                                    label="Título da Avaliação" required
+                                    value={titulo}
                                     onchange={recordChangeVal}
                                     >
                     </lightning-input>
                     <lightning-combobox 
                                         name="nota" 
                                         label="Nota" required
-                                        value={notaValue} 
+                                        value={nota} 
                                         placeholder="Selecione a Nota"
                                         data-element="required"
                                         options={options} 
@@ -32,7 +32,7 @@
                     <lightning-textarea 
                                         name="descricao" 
                                         type="text" 
-                                        value={descricaoValue}
+                                        value={descricao}
                                         label="descrição" 
                                         onchange={recordChangeVal}>
                     </lightning-textarea>
@@ -43,6 +43,7 @@
                     <lightning-button 
                                     onclick={handleClick} 
                                     label="Registrar Avaliação" 
+                                    disabled={isButtonDisabled}
                                     onchange={recordChangeVal}>
                     </lightning-button>
                 </lightning-layout-item>
