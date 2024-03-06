@@ -4,7 +4,7 @@
  * @group             : 
  * @company           : Sottelli
  * @systemLayer       : 
- * @last modified on  : 27-02-2024
+ * @last modified on  : 06-03-2024
  * @last modified by  : Eduardo Fabricio
 **/
 @isTest
@@ -22,7 +22,6 @@ public class TestDataFactory {
             Nota__c = nota,
             Account__c = accountId
         );
-        insert avaliacaoTeste;
         return avaliacaoTeste;
     }
 
