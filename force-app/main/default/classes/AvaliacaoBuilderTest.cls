@@ -4,7 +4,7 @@
  * @group             : 
  * @company           : Sottelli
  * @systemLayer       : 
- * @last modified on  : 06-03-2024
+ * @last modified on  : 07-03-2024
  * @last modified by  : Eduardo Fabricio
 **/
 @isTest
@@ -27,8 +27,8 @@ public with sharing class AvaliacaoBuilderTest {
         List<AvaliacaoVO> avaBuilderList = builder.buildAvaliacaoVO(avas);
         
         
-        System.assertEquals(2, avaBuilderList.size(), 'Size is not as expected');
-        System.assertEquals('Avaliacao 1', avaBuilderList[0].titulo, 'Avaliacao 1 titulo não é igual');
-        System.assertEquals('Avaliacao 2', avaBuilderList[1].titulo, 'Avaliacao 2 titulo não é igual');
+        Assert.areEqual(2, avaBuilderList.size(), 'Size is not as expected');
+        Assert.areEqual('Avaliacao 1', avaBuilderList[0].titulo, 'Avaliacao 1 titulo não é igual');
+        Assert.areEqual('Avaliacao 2', avaBuilderList[1].titulo, 'Avaliacao 2 titulo não é igual');
     }
 }

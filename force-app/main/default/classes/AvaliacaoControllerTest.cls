@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Eduardo Fabricio
  * @group             : 
- * @last modified on  : 02-07-2024
+ * @last modified on  : 07-03-2024
  * @last modified by  : Eduardo Fabricio
 **/
 @isTest
@@ -17,7 +17,7 @@ public class AvaliacaoControllerTest {
     @isTest
     public static void testCriarAvaliacao() {
         Account contaTeste = TestDataFactory.criarContaDeTeste('Conta de Teste');
-
+        insert contaTeste;
         Test.startTest();
         // Chamar o método criarAvaliacao usando a TestDataFactory
         AvaliacaoController.criarAvaliacao('Título Teste', 'Descrição Teste', 4.5, contaTeste.Id);
@@ -25,7 +25,7 @@ public class AvaliacaoControllerTest {
 
         // Verificar se a avaliação foi criada
         List<Avaliacao__c> avaliacoes = [SELECT Id FROM Avaliacao__c WHERE Name = 'Título Teste' LIMIT 1];
-        System.assertEquals(1, avaliacoes.size(), 'A avaliação não foi criada corretamente');
+        Assert.areEqual(1, avaliacoes.size(), 'A avaliação não foi criada corretamente');
 
     }
     
@@ -46,21 +46,22 @@ public class AvaliacaoControllerTest {
 
         // Verificar se a avaliação foi criada
         //List<Avaliacao__c> avaliacoes = [SELECT Id FROM Avaliacao__c WHERE Name = 'Título Teste' LIMIT 1];
-        System.assert(exp != null);
+        Assert.isTrue(exp != null);
 
     }
 
     @isTest
     public static void testGetRecords() {
         Account contaTeste = TestDataFactory.criarContaDeTeste('Conta de Teste');
+        insert contaTeste;
         Avaliacao__c avaliacaoTeste = TestDataFactory.criarAvaliacaoDeTeste('Título Teste', 'Descrição Teste', 4.5, contaTeste.Id);
-
+        insert avaliacaoTeste;
         // Chamar o método getRecords usando a TestDataFactory
         List<AvaliacaoVO> resultados = AvaliacaoController.getRecords(contaTeste.Id);
 
         // Verificar se a avaliação é retornada corretamente
-        System.assertEquals(1, resultados.size(), 'A lista de avaliações não está correta');
-        System.assertEquals('Título Teste', resultados[0].titulo, 'O título da avaliação não está correto');
+        Assert.areEqual(1, resultados.size(), 'A lista de avaliações não está correta');
+        Assert.areEqual('Título Teste', resultados[0].titulo, 'O título da avaliação não está correto');
     }
 
     @isTest
@@ -74,6 +75,6 @@ public class AvaliacaoControllerTest {
         }
         System.debug(detalhesUsuario);
         // Verificar se os detalhes do usuário são retornados corretamente
-        System.assertEquals(userQuery.Name, detalhesUsuario, 'o usuário name é diferente');
+        Assert.areEqual(userQuery.Name, detalhesUsuario, 'o usuário name é diferente');
     }
 }

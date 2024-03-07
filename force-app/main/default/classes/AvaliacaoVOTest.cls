@@ -4,7 +4,7 @@
  * @group             : 
  * @company           : Sottelli
  * @systemLayer       : 
- * @last modified on  : 06-03-2024
+ * @last modified on  : 07-03-2024
  * @last modified by  : Eduardo Fabricio
 **/
 @isTest
@@ -30,10 +30,10 @@ private class AvaliacaoVOTest {
         avaliacaoVO testAvaliacaoVO = new avaliacaoVO(testAvaliacao);
 
         // Verify that the values are set correctly
-        System.assertEquals('Test Avaliacao', testAvaliacaoVO.titulo,' Titulo não é igual');
-        System.assertEquals('Test Description', testAvaliacaoVO.descricao,'descricao não é igual');
-        System.assertEquals(4.5, testAvaliacaoVO.nota,'nota não é igual');
-        System.assertEquals(acc.id, testAvaliacaoVO.accountId,'accountId não é igual');
-        System.assertEquals(user.Name, testAvaliacaoVO.userName,'userName não é igual');
+        Assert.areEqual('Test Avaliacao', testAvaliacaoVO.titulo,' Titulo não é igual');
+        Assert.areEqual('Test Description', testAvaliacaoVO.descricao,'descricao não é igual');
+        Assert.areEqual(4.5, testAvaliacaoVO.nota,'nota não é igual');
+        Assert.areEqual(acc.id, testAvaliacaoVO.accountId,'accountId não é igual');
+        Assert.areEqual(user.Name, testAvaliacaoVO.userName,'userName não é igual');
     }
 }
