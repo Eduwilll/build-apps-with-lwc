@@ -26,16 +26,17 @@ public with sharing class TriggerHandlerConta {
 
          // Calcular a média e atualizar as contas
         for (Id contaId : contaAvaliacoesMap.keySet()) {
+            System.debug('contaAvaliacoesMap.keySet():'+contaAvaliacoesMap.keySet());
             List<Avaliacao__c> avaliacoes = contaAvaliacoesMap.get(contaId);
             Decimal media = 0;
-
+            System.debug('avaliacoes:'+avaliacoes);
             for (Avaliacao__c avaliacao : avaliacoes) {
                 media += avaliacao.Nota__c;
             }
 
             media = (avaliacoes.size() > 0) ? media / avaliacoes.size() : 0;
             
-            System.debug(media);
+            System.debug('média:'+media);
             
             contasToUpdate.add(new Account(
                 Id = contaId,
